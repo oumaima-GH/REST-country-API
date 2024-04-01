@@ -37,23 +37,27 @@ const getCountry = async () =>{
 
 getCountry()
 
+
+const exclude = ['Western Sahara', 'Israel']
+
 const displayCountry = (data) =>{
-    const countryName = document.createElement('div')
-    countryName.classList.add('country')
-    countryName.innerHTML = `
-    <div class="flag">
-    <img src="${data.flags.png}" alt="flag" />
-  </div>
+    if (!exclude.includes(data.name.common)) {
+        const countryName = document.createElement('div')
+        countryName.classList.add('country')
+        countryName.innerHTML = `
+            <div class="flag">
+                <img src="${data.flags.png}" alt="flag" />
+            </div>
 
-  <div class="info">
-    <h5 class='name'>${data.name.common}</h5>
-    <p><strong>Population: </strong>${data.population}</p>
-    <p class='regionName'><strong>Region: </strong>${data.region}</p>
-    <p><strong>Capital: </strong>${data.capital}</p>
-  </div>
-    `
-
-    countries.append(countryName)
+            <div class="info">
+                <h5 class='name'>${data.name.common}</h5>
+                <p><strong>Population: </strong>${data.population}</p>
+                <p class='regionName'><strong>Region: </strong>${data.region}</p>
+                <p><strong>Capital: </strong>${data.capital}</p>
+            </div>
+        `;
+        countries.append(countryName);
+    }
 }
 
 
